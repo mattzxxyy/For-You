@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hari Ulang Tahun Udiaa Pacar Iuss</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap');
+
+        /* Background dan styling halaman */
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+            color: #333;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Styling kontainer countdown */
+        #countdown, #birthday-message {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            display: none; /* Sembunyikan awalnya */
+        }
+
+        #countdown {
+            display: block; /* Countdown tampil dulu */
+        }
+
+        h1 {
+            color: #ff6b81;
+            font-size: 1.8em;
+            font-family: 'Pacifico', cursive;
+        }
+
+        .time-box {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .time-box div {
+            background-color: #ffe6f0;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.5em;
+            font-weight: bold;
+            width: 80px;
+            color: #ff6b81;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .label {
+            font-size: 0.75em;
+            color: #555;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+        }
+
+        /* Kue ulang tahun */
+        .cake {
+            margin: 20px auto;
+            width: 120px;
+            height: 120px;
+            background-color: #ff6b81;
+            border-radius: 10px;
+            position: relative;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        /* Animasi mengambang untuk kue */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Dekorasi atas kue */
+        .cake::before, .cake::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 5px;
+            background-color: #ffa07a;
+            top: -10px;
+            border-radius: 5px;
+        }
+        .cake::before { left: 15px; }
+        .cake::after { right: 15px; }
+
+        /* Lilin */
+        .candle {
+            position: absolute;
+            width: 10px;
+            height: 30px;
+            background-color: yellow;
+            top: -35px;
+            left: 55px;
+            border-radius: 2px;
+        }
+
+        /* Nyala lilin */
+        .flame {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: orange;
+            border-radius: 50%;
+            top: -12px;
+            left: 1px;
+            animation: flicker 0.3s infinite alternate;
+        }
+
+        /* Animasi nyala lilin */
+        @keyframes flicker {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .message {
+            font-size: 1.5em;
+            color: #ff6b81;
+            margin-top: 15px;
+            animation: fadeIn 1.5s ease-in-out;
+            font-family: 'Pacifico', cursive;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Styling form Make a Wish */
+        #wish-box {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        #wish-box input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: 80%;
+            max-width: 300px;
+        }
+        #wish-box button {
+            background-color: #ff6b81;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        #wish-box button:hover {
+            background-color: #ff4d6d;
+        }
+    </style>
+</head>
+<body>
+
+<div id="countdown">
+    <h1>Hari Ulang Tahun Udiaa Pacar Iuss</h1>
+    <div class="time-box">
+        <div>
+            <span id="days">00</span><br>
+            <span class="label">Hari</span>
+        </div>
+        <div>
+            <span id="hours">00</span><br>
+            <span class="label">Jam</span>
+        </div>
+        <div>
+            <span id="minutes">00</span><br>
+            <span class="label">Menit</span>
+        </div>
+        <div>
+            <span id="seconds">00</span><br>
+            <span class="label">Detik</span>
+        </div>
+    </div>
+</div>
+
+<div id="birthday-message">
+    <div class="message">Happy Birthday Sayanggg!</div>
+    <div class="cake">
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+    </div>
+    <div id="wish-box">
+        <input type="text" id="wish-input" placeholder="Make a Wish...">
+        <button onclick="sendWish()">Send Wish</button>
+    </div>
+</div>
+
+<script>
+    const birthdayDate = new Date('2024-11-11T00:00:00').getTime();
+
+    const countdown = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = birthdayDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerHTML = days;
+        document.getElementById('hours').innerHTML = hours;
+        document.getElementById('minutes').innerHTML = minutes;
+        document.getElementById('seconds').innerHTML = seconds;
+
+        if (distance < 0) {
+            clearInterval(countdown);
+            document.getElementById('countdown').style.display = 'none';
+            document.getElementById('birthday-message').style.display = 'block';
+        }
+    }, 1000);
+
+    function sendWish() {
+        const wish = document.getElementById('wish-input').value;
+        const phoneNumber = '+6283123827665';
+        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(wish)}`;
+        window.open(url, '_blank');
+    }
+</script>
+
+</body>
+</html>
